@@ -64,6 +64,7 @@ def preprocessDataAndPredict(model, kasus_aktif, kasus_baru):
 
     # trainned model
     trained_model = joblib.load(file)
+    print(trained_model)
 
     # melakukan prediksi
     prediction = trained_model.predict(test_data)
