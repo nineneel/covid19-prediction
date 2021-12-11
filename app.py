@@ -5,6 +5,7 @@ import requests as req
 import schedule
 import sys
 import logging
+from sklearn.metrics import accuracy_score
 
 app = Flask(__name__)
 
