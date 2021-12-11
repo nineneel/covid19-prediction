@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Covid-19 Prediction</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
+        />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', filename='style.css')}}"
+        />
+    </head>
+    <body class="homepage is-preload">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <section id="header">
+                <!-- Logo -->
+                <h1>
+                    <a href="/">Covid-19 Prediction (INDONESIA)</a>
+                </h1>
+
+                <!-- Banner -->
+                <section id="banner">
+                    {% for data in data_indonesia %}
+                    <header>
+                        <h2>Positif</h2>
+                        <p>{{data.positif}}</p>
+                    </header>
+                    <header>
+                        <h2>Sembuh</h2>
+                        <p>{{data.sembuh}}</p>
+                    </header>
+                    <header>
+                        <h2>Meninggal</h2>
+                        <p>{{data.meninggal}}</p>
+                    </header>
+                    <header>
+                        <h2>Dirawat</h2>
+                        <p>{{data.dirawat}}</p>
+                    </header>
+                    {% endfor %}
+                </section>
+
+                <!-- Main -->
+                <section id="intro" class="container">
+                    <div class="row aln-center">
+                        <div class="col-8 col-12-medium">
+                            <section class="middle">
+                                <h2>Prediksi Sembuh Baru & Meninggal Baru</h2>
+                                {% if alert != "" %}
+                                <h3
+                                    style="
+                                        color: #c51349;
+                                        background-color: #ffdde7;
+                                        padding: 0.7em 2em;
+                                    "
+                                >
+                                    {{alert}}
+                                </h3>
+                                {% endif %}
+                                <form
+                                    id="input-form"
+                                    action="/predict/"
+                                    method="post"
+                                >
+                                    <label for="model">Pilih Model</label>
+                                    <select name="model" id="model">
+                                        <option
+                                            value="Decision Tree Reggresion"
+                                        >
+                                            Decision Tree Regresion
+                                        </option>
+                                        <option
+                                            value="Random Forest Reggresion"
+                                        >
+                                            Random Forest Regresion
+                                        </option>
+                                    </select>
+                                    <label for="kasus-aktif">Kasus Aktif</label>
+                                    <input
+                                        type="number"
+                                        name="kasus-aktif"
+                                        placeholder="Masukkan Angka Kasus Aktif"
+                                    />
+                                    <label for="kasus-baru">Kasus Baru</label>
+                                    <input
+                                        type="number"
+                                        name="kasus-baru"
+                                        placeholder="Masukkan Angka Kasus Baru"
+                                    />
+                                    <!-- <label for="dosis-pertama"
+                                        >Total Vaksin Dosis Pertama</label
+                                    >
+                                    <input
+                                        type="number"
+                                        name="dosis-pertama"
+                                        placeholder="Masukkan Angka Total Dosis Pertama"
+                                    />
+                                    <label for="dosis-kedua"
+                                        >Total Vaksin Dosis Kedua</label
+                                    >
+                                    <input
+                                        type="number"
+                                        name="dosis-kedua"
+                                        placeholder="Masukkan Angka Total Dosis Kedua"
+                                    /> -->
+                                    <input
+                                        type="submit"
+                                        class="button"
+                                        value="Prediksikan!"
+                                    />
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Footer -->
+            <div id="copyright">
+                <ul class="links">
+                    <li>&copy; Made With Love</li>
+                    <li>Group 6 from UPH Data Science</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
